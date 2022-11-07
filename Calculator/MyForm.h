@@ -34,7 +34,9 @@ namespace Calculator {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ txtDisplay;
+	protected:
+
 	private: System::Windows::Forms::Button^ btnClr;
 	private: System::Windows::Forms::Button^ btnMod;
 
@@ -90,7 +92,7 @@ namespace Calculator {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->txtDisplay = (gcnew System::Windows::Forms::TextBox());
 			this->btnClr = (gcnew System::Windows::Forms::Button());
 			this->btnMod = (gcnew System::Windows::Forms::Button());
 			this->btnSign = (gcnew System::Windows::Forms::Button());
@@ -112,20 +114,20 @@ namespace Calculator {
 			this->btnDec = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// txtDisplay
 			// 
-			this->textBox1->BackColor = System::Drawing::SystemColors::MenuText;
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Arial", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->txtDisplay->BackColor = System::Drawing::SystemColors::MenuText;
+			this->txtDisplay->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txtDisplay->Font = (gcnew System::Drawing::Font(L"Arial", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->ForeColor = System::Drawing::SystemColors::Window;
-			this->textBox1->Location = System::Drawing::Point(12, 12);
-			this->textBox1->Multiline = true;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(298, 60);
-			this->textBox1->TabIndex = 0;
-			this->textBox1->Text = L"0";
-			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
+			this->txtDisplay->ForeColor = System::Drawing::SystemColors::Window;
+			this->txtDisplay->Location = System::Drawing::Point(12, 12);
+			this->txtDisplay->Multiline = true;
+			this->txtDisplay->Name = L"txtDisplay";
+			this->txtDisplay->Size = System::Drawing::Size(298, 60);
+			this->txtDisplay->TabIndex = 0;
+			this->txtDisplay->Text = L"0";
+			this->txtDisplay->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
 			// btnClr
 			// 
@@ -137,6 +139,7 @@ namespace Calculator {
 			this->btnClr->TabIndex = 1;
 			this->btnClr->Text = L"C";
 			this->btnClr->UseVisualStyleBackColor = true;
+			this->btnClr->Click += gcnew System::EventHandler(this, &MyForm::btnClr_Click);
 			// 
 			// btnMod
 			// 
@@ -148,6 +151,7 @@ namespace Calculator {
 			this->btnMod->TabIndex = 1;
 			this->btnMod->Text = L"%";
 			this->btnMod->UseVisualStyleBackColor = true;
+			this->btnMod->Click += gcnew System::EventHandler(this, &MyForm::eChosen);
 			// 
 			// btnSign
 			// 
@@ -159,6 +163,7 @@ namespace Calculator {
 			this->btnSign->TabIndex = 1;
 			this->btnSign->Text = L"+/-";
 			this->btnSign->UseVisualStyleBackColor = true;
+			this->btnSign->Click += gcnew System::EventHandler(this, &MyForm::btnSign_Click);
 			// 
 			// btnDiv
 			// 
@@ -173,6 +178,7 @@ namespace Calculator {
 			this->btnDiv->TabIndex = 1;
 			this->btnDiv->Text = L"÷";
 			this->btnDiv->UseVisualStyleBackColor = false;
+			this->btnDiv->Click += gcnew System::EventHandler(this, &MyForm::opChosen);
 			// 
 			// btn7
 			// 
@@ -187,6 +193,7 @@ namespace Calculator {
 			this->btn7->TabIndex = 1;
 			this->btn7->Text = L"7";
 			this->btn7->UseVisualStyleBackColor = false;
+			this->btn7->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btn8
 			// 
@@ -201,6 +208,7 @@ namespace Calculator {
 			this->btn8->TabIndex = 1;
 			this->btn8->Text = L"8";
 			this->btn8->UseVisualStyleBackColor = false;
+			this->btn8->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btnMul
 			// 
@@ -215,6 +223,7 @@ namespace Calculator {
 			this->btnMul->TabIndex = 1;
 			this->btnMul->Text = L"×";
 			this->btnMul->UseVisualStyleBackColor = false;
+			this->btnMul->Click += gcnew System::EventHandler(this, &MyForm::opChosen);
 			// 
 			// btn9
 			// 
@@ -229,6 +238,7 @@ namespace Calculator {
 			this->btn9->TabIndex = 1;
 			this->btn9->Text = L"9";
 			this->btn9->UseVisualStyleBackColor = false;
+			this->btn9->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btn4
 			// 
@@ -243,6 +253,7 @@ namespace Calculator {
 			this->btn4->TabIndex = 1;
 			this->btn4->Text = L"4";
 			this->btn4->UseVisualStyleBackColor = false;
+			this->btn4->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btn5
 			// 
@@ -257,6 +268,7 @@ namespace Calculator {
 			this->btn5->TabIndex = 1;
 			this->btn5->Text = L"5";
 			this->btn5->UseVisualStyleBackColor = false;
+			this->btn5->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btnSub
 			// 
@@ -271,6 +283,7 @@ namespace Calculator {
 			this->btnSub->TabIndex = 1;
 			this->btnSub->Text = L"-";
 			this->btnSub->UseVisualStyleBackColor = false;
+			this->btnSub->Click += gcnew System::EventHandler(this, &MyForm::opChosen);
 			// 
 			// btn6
 			// 
@@ -285,6 +298,7 @@ namespace Calculator {
 			this->btn6->TabIndex = 1;
 			this->btn6->Text = L"6";
 			this->btn6->UseVisualStyleBackColor = false;
+			this->btn6->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btn1
 			// 
@@ -299,6 +313,7 @@ namespace Calculator {
 			this->btn1->TabIndex = 1;
 			this->btn1->Text = L"1";
 			this->btn1->UseVisualStyleBackColor = false;
+			this->btn1->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btn2
 			// 
@@ -313,6 +328,7 @@ namespace Calculator {
 			this->btn2->TabIndex = 1;
 			this->btn2->Text = L"2";
 			this->btn2->UseVisualStyleBackColor = false;
+			this->btn2->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btnAdd
 			// 
@@ -327,6 +343,7 @@ namespace Calculator {
 			this->btnAdd->TabIndex = 1;
 			this->btnAdd->Text = L"+";
 			this->btnAdd->UseVisualStyleBackColor = false;
+			this->btnAdd->Click += gcnew System::EventHandler(this, &MyForm::opChosen);
 			// 
 			// btn3
 			// 
@@ -341,6 +358,7 @@ namespace Calculator {
 			this->btn3->TabIndex = 1;
 			this->btn3->Text = L"3";
 			this->btn3->UseVisualStyleBackColor = false;
+			this->btn3->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btn0
 			// 
@@ -355,6 +373,7 @@ namespace Calculator {
 			this->btn0->TabIndex = 1;
 			this->btn0->Text = L"0";
 			this->btn0->UseVisualStyleBackColor = false;
+			this->btn0->Click += gcnew System::EventHandler(this, &MyForm::numChosen);
 			// 
 			// btnEq
 			// 
@@ -369,6 +388,7 @@ namespace Calculator {
 			this->btnEq->TabIndex = 1;
 			this->btnEq->Text = L"=";
 			this->btnEq->UseVisualStyleBackColor = false;
+			this->btnEq->Click += gcnew System::EventHandler(this, &MyForm::btnEq_Click);
 			// 
 			// btnDec
 			// 
@@ -383,6 +403,7 @@ namespace Calculator {
 			this->btnDec->TabIndex = 1;
 			this->btnDec->Text = L".";
 			this->btnDec->UseVisualStyleBackColor = false;
+			this->btnDec->Click += gcnew System::EventHandler(this, &MyForm::btnDec_Click);
 			// 
 			// MyForm
 			// 
@@ -409,7 +430,7 @@ namespace Calculator {
 			this->Controls->Add(this->btn4);
 			this->Controls->Add(this->btn7);
 			this->Controls->Add(this->btnClr);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->txtDisplay);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->ResumeLayout(false);
@@ -417,7 +438,74 @@ namespace Calculator {
 
 		}
 #pragma endregion
+		//Initializing variables needed to make the calculation
+		double first, second, result;
+		String^ currop;
 
+private: System::Void numChosen(System::Object^ sender, System::EventArgs^ e) {
+	Button^ num = safe_cast<Button^>(sender); //'num' is the number that was clicked on
+	if (txtDisplay->Text == "0") { //if starting calculation replace our holding value which is 0
+		txtDisplay->Text = num->Text;
+	}
+	else {
+		txtDisplay->Text += num->Text;	 //else add the next number to our string to form the number the user wants
+	}
+}
 
+private: System::Void opChosen(System::Object^ sender, System::EventArgs^ e) {
+	Button^ op = safe_cast<Button^>(sender); //'op' is the operator that was clicked on
+	first = Double::Parse(txtDisplay->Text); //Save current number displayed to our variable
+	txtDisplay->Text = ""; //Clear display for next number
+	currop = op->Text; //storing the operator
+}
+
+private: System::Void btnDec_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (!txtDisplay->Text->Contains(".")) { //if our display does not contain '.', then we can add one
+		txtDisplay->Text += ".";
+	}
+}
+
+private: System::Void btnEq_Click(System::Object^ sender, System::EventArgs^ e) {
+	second = Double::Parse(txtDisplay->Text);
+	if(currop == "+") {
+		result = first + second;
+		txtDisplay->Text = Convert::ToString(result);
+	}
+	else if(currop == "-") {
+		result = first - second;
+		txtDisplay->Text = Convert::ToString(result);
+	}
+	else if (currop == "×") {
+		result = first * second;
+		txtDisplay->Text = Convert::ToString(result);
+	}
+	else if (currop == "÷") {
+		result = first / second;
+		txtDisplay->Text = Convert::ToString(result);
+	}
+	else {
+		txtDisplay->Text = "OPERATOR ERROR";
+	}
+
+	
+}
+private: System::Void eChosen(System::Object^ sender, System::EventArgs^ e) {
+	first = Double::Parse(txtDisplay->Text);
+	result = first / 100;
+	txtDisplay->Text = Convert::ToString(result);
+}
+private: System::Void btnClr_Click(System::Object^ sender, System::EventArgs^ e) {
+	first = 0;
+	second = 0;
+	txtDisplay->Text = "0";
+}
+private: System::Void btnSign_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (txtDisplay->Text->Contains("-")) {
+		txtDisplay->Text = txtDisplay->Text->Remove(0, 1);
+	}
+	else {
+		txtDisplay->Text = "-" + txtDisplay->Text;
+	}
+}
 };
 }

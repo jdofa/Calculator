@@ -1,2 +1,2 @@
 # Calculator
-A calculator made using C++ and the .NET framework.
+A calculator made using C++/CLI and the .NET framework.
